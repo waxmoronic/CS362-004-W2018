@@ -67,20 +67,20 @@ runtests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 
 	cat unittest4.c.gcov >> unittestresults.out
 
 	./cardtest1 >> unittestresults.out
-	gcov cardtest1 >> unittestresults.out
-	cat cardtest1 >> unittestresults.out
+	gcov cardtest1.c >> unittestresults.out
+	cat cardtest1.c.gcov >> unittestresults.out
 
 	./cardtest2 >> unittestresults.out
-	gcov cardtest2 >> unittestresults.out
-	cat cardtest2 >> unittestresults.out
+	gcov cardtest2.c >> unittestresults.out
+	cat cardtest2.c.gcov >> unittestresults.out
 
 	./cardtest3 >> unittestresults.out
-	gcov cardtest3 >> unittestresults.out
-	cat cardtest3 >> unittestresults.out
+	gcov cardtest3.c >> unittestresults.out
+	cat cardtest3.c.gcov >> unittestresults.out
 
 	./cardtest4 >> unittestresults.out
-	gcov cardtest4 >> unittestresults.out
-	cat cardtest4 >> unittestresults.out
+	gcov cardtest4.c >> unittestresults.out
+	cat cardtest4.c.gcov >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

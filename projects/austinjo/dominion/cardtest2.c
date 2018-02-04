@@ -44,7 +44,7 @@ int main() {
 
 	printf("Test 4: Player's discard pile is larger, or they only drew 2 cards.\n");
 	
-	if (G.discardCount[0] > pre.discardCount[0]  || ((G.deckCount[0] == pre.deckCount[0]-2) || G.discardCount == 0 || G.discardCount == 1)) printf ("Success! Discard pile went from %d to %d.\n", pre.discardCount[0], G.discardCount[0]);
+	if (G.discardCount[0] > pre.discardCount[0]  || ((G.deckCount[0] == pre.deckCount[0]-2) || G.discardCount[0] == 0 || G.discardCount[0] == 1)) printf ("Success! Discard pile went from %d to %d.\n", pre.discardCount[0], G.discardCount[0]);
 	else printf("***FAILED: ");
 
 	return 0;
