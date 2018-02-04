@@ -36,6 +36,8 @@
 #include <time.h>
 #include "rngs.h"
 
+
+
 #define MODULUS    2147483647 /* DON'T CHANGE THIS VALUE                  */
 #define MULTIPLIER 48271      /* DON'T CHANGE THIS VALUE                  */
 #define CHECK      399268537  /* DON'T CHANGE THIS VALUE                  */
