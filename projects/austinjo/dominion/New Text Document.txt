@@ -37,7 +37,6 @@ int main() {
 		int numPlayers, firstDrawn, secondDrawn;
 
 		int failHandSize = 0;
-		int failTreasureCount = 0;
 
 		int randCardGain = 0;
 		int randDiscardGain = 0;
@@ -89,7 +88,6 @@ int main() {
 			if ((firstDrawn < 4 || firstDrawn > 6) || (secondDrawn < 4 || secondDrawn > 6)) {
 				treasureCountFail++;
 			}
-			failTreasureCount = 1;
 		}
 
 		// test to see if discard is different
