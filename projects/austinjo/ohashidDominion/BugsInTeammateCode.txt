@@ -1,0 +1,7 @@
+Bug Reports
+
+Smithy: Failed test 1: “Player has +3 cards”. The drawCard() loop in the Smithy function loops an extra time, resulting in 4 cards drawn instead of 3. This was found using my “cardtest1” test driver. My test did not report what the reported value was, just the expected value and if it matched or not, so I had to go through the code a bit to find what the problem was. (bug at dominion.c line 1276)
+
+Adventurer: Failed test 1: “Player has +2 cards”, player had only +1 card. Also failed test 2: “Two added cards are both treasures”, only one was a treasure. This was found using my “cardtest2” test driver. Fortunately this driver reported the values from the program as well as the expected value, so it was a little easier to find the problem. (bug at dominion.c line 1296)
+
+Gardens: This is a bug that isn’t induced from a previous assignment. I found this bug in my Assignment 3 testing as well. The bug is on line 444 of dominion.c. This isn’t a bug with Gardens, though. Gardens isn’t a playable card; instead it is calculated with the rest of the score in scoreFor().  When the program enters the loop to check each card in the player’s deck, the loop uses the size of the discard pile instead of the size of the deck as the conditional for ending the loop. This will cause the program to calculate the final score incorrectly.

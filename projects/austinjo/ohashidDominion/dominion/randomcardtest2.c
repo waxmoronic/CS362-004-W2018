@@ -68,7 +68,7 @@ int main() {
 		}
 
 		// test for +1 buy
-		if (pre.numBuys != post.numBuys - 1) { 
+		if (pre.numBuys != post.numBuys - 1) {
 			buyCountFail++;
 		}
 
