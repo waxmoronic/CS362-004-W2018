@@ -31,6 +31,7 @@ public class UrlValidatorTest extends TestCase {
 	   
 	   System.out.println("\n---Should be false---");
 	   System.out.println("(blank) --> " + (urlVal.isValid("www.apache.com")));
+	// bug 1 crashes anything but http, commented out lines affected
 	   // System.out.println("htp:// --> " + (urlVal.isValid("htp://www.apache.com")));
 	   
 	   System.out.println("\nManual testing: Authority");
@@ -91,19 +92,170 @@ public class UrlValidatorTest extends TestCase {
    public void testYourFirstPartition()
    {
 	 //You can use this function to implement your First Partition testing	   
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   System.out.println("Testing First Partition - Url Scheme");
+	   
+	   System.out.println("Testing Scheme http:// - appended to www.google.com");
+	   if(urlVal.isValid("http://www.google.com")) {
+		   System.out.println("Valid Scheme.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   System.out.println("Testing Scheme http/ - appended to www.google.com");
+	   if(!urlVal.isValid("http/www.google.com")) {
+		   System.out.println("Invalid Scheme");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   System.out.println("Testing Scheme :// - appended to www.google.com");
+	   if(!urlVal.isValid("://www.google.com")) {
+		   System.out.println("Invald Scheme");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
 
+	   // bug 1 crashes anything but http, commented out lines affected
+	   /*	   System.out.println("Testing Scheme ftp:// - appended to www.google.com");
+	   if(urlVal.isValid("ftp://www.google.com")) {
+		   System.out.println("Valid Scheme");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }*/
+	   
+	   System.out.println("Testing Scheme 3ht:// - appended to www.google.com");
+	   if(!urlVal.isValid("3ht://www.google.com")) {
+		   System.out.println("Invalid Scheme.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   System.out.println("Testing Scheme http: - appended to www.google.com");
+	   if(!urlVal.isValid("http:www.google.com")){
+		   	System.out.println("Invalid Scheme");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
    }
    
    public void testYourSecondPartition(){
-		 //You can use this function to implement your Second Partition testing	   
-
+		 //You can use this function to implement your Second Partition testing	 
+	   System.out.println("Testing Second Partition - Url Authority");
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   if(urlVal.isValid("www.google.com")) {
+		   System.out.println("www.google.com - Valid Authority.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(urlVal.isValid("go.com")) {
+		   System.out.println("go.com - Valid Authority.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(!urlVal.isValid(".1.2.3.4.")) {
+		   System.out.println(".1.2.3.4 - Invalid Authority.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(!urlVal.isValid("go.1aa")) {
+		   System.out.println("go.1aa - Invalid Authority.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(!urlVal.isValid("aaa")) {
+		   System.out.println("aaa - Invalid Authority.");
+	   }
    }
    //You need to create more test cases for your Partitions if you need to 
+   public void testYourThirdPartition() {
+	   System.out.println("Testing Third Partition - Url Port");
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   if(urlVal.isValid("www.google.com:80")) {
+		   System.out.println("Port :80 - Valid Port.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(urlVal.isValid("www.google.com:65535")) {
+		   System.out.println("Port :65535 - Valid Port.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(urlVal.isValid("www.google.com:0")) {
+		   System.out.println("Port :0 - Valid Port.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(!urlVal.isValid("www.google.com:-1")) {
+		   System.out.println("Port :-1 Invalid Port.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(!urlVal.isValid("www.google.com:65a")) {
+		   System.out.println("Port :65a - Invalid Port.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   
+   }
    
-/*   public void testIsValid()
+   public void testYourFourthPartition() {
+	   System.out.println("Testing Fourth Partition - Url Path");
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   if(urlVal.isValid("www.google.com/test1")) {
+		   System.out.println("Path /test1 - Valid Path.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(urlVal.isValid("www.google.com/$23")) {
+		   System.out.println("Path /$23 - Valid Path.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(!urlVal.isValid("www.google.com/..")) {
+		   System.out.println("Path /.. - Invalid Path.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(!urlVal.isValid("www.google.com/../")){
+		   System.out.println("Path /../ - Invalid Path.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(urlVal.isValid("www.google.com/test/file")) {
+		   System.out.println("Path /test/file - Valid Path.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+	   if(!urlVal.isValid("www.google.com/..//file")) {
+		   System.out.println("Path /..//file - Invalid Path.");
+	   }
+	   else {
+		   System.out.println("Bug found.");
+	   }
+   } 
+   
+   public void testIsValid()
    {
 	   //You can use this function for programming based testing
-System.out.println("---Starting Programming Based Testing---");
+	   System.out.println("---Starting Programming Based Testing---");
 	   
 	   // Create new url validator 
 	   UrlValidator urlVal = new UrlValidator(null,null, UrlValidator.ALLOW_ALL_SCHEMES); 
@@ -150,7 +302,7 @@ System.out.println("---Starting Programming Based Testing---");
 	   System.out.print("Scheme Test Passed: ");
 	   System.out.print(testPassed);
 */
-/*
+
 
 	   // Reset testPassed
 	   testPassed = 0;
@@ -293,7 +445,7 @@ System.out.println("---Starting Programming Based Testing---");
 
 
    }
-*/   
+   
 
 
 }
