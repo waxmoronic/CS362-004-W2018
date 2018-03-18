@@ -24,7 +24,7 @@ import junit.framework.TestCase;
  */
 public class UrlValidatorTest extends TestCase {
 
-   private final boolean printStatus = false;
+   private final boolean printStatus = true;
    private final boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
    public UrlValidatorTest(String testName) {
@@ -124,6 +124,7 @@ protected void setUp() {
       if (printStatus) {
          System.out.println();
       }
+      System.out.println("http://25/5.255.255.256 --> " + (urlVal.isValid("http://25/5.255.255.256")));
    }
 
    public void testValidator202() {
