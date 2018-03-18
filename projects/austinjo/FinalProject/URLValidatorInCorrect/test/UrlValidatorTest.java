@@ -178,31 +178,31 @@ public class UrlValidatorTest extends TestCase {
    public void testYourThirdPartition() {
 	   System.out.println("Testing Third Partition - Url Port");
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   if(urlVal.isValid("www.google.com:80")) {
+	   if(urlVal.isValid("http://www.google.com:80")) {
 		   System.out.println("Port :80 - Valid Port.");
 	   }
 	   else {
 		   System.out.println("Bug found.");
 	   }
-	   if(urlVal.isValid("www.google.com:65535")) {
+	   if(urlVal.isValid("http://www.google.com:65535")) {
 		   System.out.println("Port :65535 - Valid Port.");
 	   }
 	   else {
 		   System.out.println("Bug found.");
 	   }
-	   if(urlVal.isValid("www.google.com:0")) {
+	   if(urlVal.isValid("http://www.google.com:0")) {
 		   System.out.println("Port :0 - Valid Port.");
 	   }
 	   else {
 		   System.out.println("Bug found.");
 	   }
-	   if(!urlVal.isValid("www.google.com:-1")) {
+	   if(!urlVal.isValid("http://www.google.com:-1")) {
 		   System.out.println("Port :-1 Invalid Port.");
 	   }
 	   else {
 		   System.out.println("Bug found.");
 	   }
-	   if(!urlVal.isValid("www.google.com:65a")) {
+	   if(!urlVal.isValid("http://www.google.com:65a")) {
 		   System.out.println("Port :65a - Invalid Port.");
 	   }
 	   else {
@@ -214,37 +214,37 @@ public class UrlValidatorTest extends TestCase {
    public void testYourFourthPartition() {
 	   System.out.println("Testing Fourth Partition - Url Path");
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   if(urlVal.isValid("www.google.com/test1")) {
+	   if(urlVal.isValid("http://www.google.com/test1")) {
 		   System.out.println("Path /test1 - Valid Path.");
 	   }
 	   else {
 		   System.out.println("Bug found.");
 	   }
-	   if(urlVal.isValid("www.google.com/$23")) {
+	   if(urlVal.isValid("http://www.google.com/$23")) {
 		   System.out.println("Path /$23 - Valid Path.");
 	   }
 	   else {
 		   System.out.println("Bug found.");
 	   }
-	   if(!urlVal.isValid("www.google.com/..")) {
+	   if(!urlVal.isValid("http://www.google.com/..")) {
 		   System.out.println("Path /.. - Invalid Path.");
 	   }
 	   else {
 		   System.out.println("Bug found.");
 	   }
-	   if(!urlVal.isValid("www.google.com/../")){
+	   if(!urlVal.isValid("http://www.google.com/../")){
 		   System.out.println("Path /../ - Invalid Path.");
 	   }
 	   else {
 		   System.out.println("Bug found.");
 	   }
-	   if(urlVal.isValid("www.google.com/test/file")) {
+	   if(urlVal.isValid("http://www.google.com/test/file")) {
 		   System.out.println("Path /test/file - Valid Path.");
 	   }
 	   else {
 		   System.out.println("Bug found.");
 	   }
-	   if(!urlVal.isValid("www.google.com/..//file")) {
+	   if(!urlVal.isValid("http://www.google.com/..//file")) {
 		   System.out.println("Path /..//file - Invalid Path.");
 	   }
 	   else {
